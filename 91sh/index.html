@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>91.short.com-短链接生成_网址缩短_链接管理与访问统计</title>
+<meta name="description" content="91.short.com 是一个短链接生成与网址缩短工具，支持长链接转短链、自定义后缀、链接管理与访问统计，让分享链接更简洁、更易追踪。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Cpath d='M24 40l16-16M26 22h-4a8 8 0 000 16h6M38 42h4a8 8 0 000-16h-6' stroke='%2338bdf8' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#0f172a;
+  --ink-2:#334155;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --bg:#f6f8fb;
+  --card:#ffffff;
+  --brand:#0ea5e9;
+  --brand-deep:#0369a1;
+  --accent:#22d3ee;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* header */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(246,248,251,.88);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;height:68px;
+}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.2px}
+.logo-mark{
+  width:38px;height:38px;border-radius:11px;flex:0 0 38px;
+  background:linear-gradient(135deg,#0f172a,#1e3a5f);
+  display:grid;place-items:center;
+}
+.logo-mark svg{width:22px;height:22px}
+nav.main-nav ul{display:flex;list-style:none;gap:26px;font-size:15px;color:var(--ink-2)}
+nav.main-nav a{padding:6px 0;border-bottom:2px solid transparent;transition:.2s}
+nav.main-nav a:hover{color:var(--brand-deep);border-bottom-color:var(--accent)}
+.header-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ink);color:#fff;font-size:14px;font-weight:600;
+  padding:9px 18px;border-radius:10px;transition:.2s;white-space:nowrap;
+}
+.header-cta:hover{background:var(--brand-deep)}
+
+/* hero */
+.hero{
+  position:relative;overflow:hidden;
+  padding:64px 0 56px;
+  background:
+    radial-gradient(900px 380px at 82% -10%, rgba(34,211,238,.16), transparent 60%),
+    radial-gradient(700px 340px at 6% 110%, rgba(14,165,233,.12), transparent 60%);
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;color:var(--brand-deep);
+  background:#e0f2fe;border:1px solid #bae6fd;
+  padding:5px 12px;border-radius:999px;margin-bottom:18px;
+}
+h1{
+  font-size:clamp(30px,4.4vw,44px);
+  line-height:1.2;letter-spacing:-1px;font-weight:800;
+  word-break:break-word;
+}
+.hero-lead{margin-top:18px;color:var(--ink-2);font-size:16.5px;max-width:34em}
+.hero-lead strong{color:var(--brand-deep)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-size:15px;font-weight:600;padding:12px 22px;border-radius:11px;
+  transition:.2s;border:1px solid transparent;
+}
+.btn-primary{background:var(--brand);color:#04222f;box-shadow:0 8px 20px -8px rgba(14,165,233,.9)}
+.btn-primary:hover{background:#38bdf8}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--brand);color:var(--brand-deep)}
+.hero-stats{display:flex;flex-wrap:wrap;gap:28px;margin-top:34px;padding-top:22px;border-top:1px dashed var(--line)}
+.stat b{display:block;font-size:22px;font-weight:800;color:var(--ink);line-height:1.3}
+.stat span{font-size:13px;color:var(--muted)}
+
+.hero-visual{
+  background:var(--card);border:1px solid var(--line);border-radius:20px;
+  padding:22px;box-shadow:0 24px 50px -30px rgba(15,23,42,.35);
+}
+.visual-label{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.4px;text-transform:uppercase}
+.link-row{
+  display:flex;align-items:center;gap:10px;
+  background:#f8fafc;border:1px solid var(--line);border-radius:11px;
+  padding:11px 13px;margin-top:12px;font-size:13.5px;color:var(--ink-2);
+  overflow:hidden;
+}
+.link-row .dot{width:8px;height:8px;border-radius:50%;background:#cbd5e1;flex:0 0 8px}
+.link-row.long{color:var(--muted)}
+.link-row.long span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.link-row.short{
+  background:#ecfeff;border-color:#a5f3fc;color:#0e7490;font-weight:700;
+}
+.link-row.short .dot{background:var(--accent)}
+.arrow-down{display:grid;place-items:center;padding:6px 0;color:#94a3b8}
+
+/* sections */
+section{padding:56px 0}
+.section-head{max-width:640px;margin-bottom:32px}
+.section-head h2{font-size:clamp(22px,2.6vw,28px);font-weight:800;letter-spacing:-.5px}
+.section-head p{margin-top:10px;color:var(--muted);font-size:15.5px}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;transition:.22s;
+}
+.card:hover{transform:translateY(-3px);border-color:#bae6fd;box-shadow:0 18px 36px -26px rgba(2,132,199,.65)}
+.card-icon{
+  width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  background:#e0f2fe;margin-bottom:16px;
+}
+.card-icon svg{width:22px;height:22px;stroke:var(--brand-deep);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.card p{font-size:14.5px;color:var(--ink-2)}
+
+/* steps */
+.steps-wrap{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.step{position:relative;padding-left:0}
+.step-num{
+  display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;
+  background:var(--ink);color:#fff;font-weight:700;font-size:15px;margin-bottom:14px;
+}
+.step h3{font-size:16.5px;font-weight:700;margin-bottom:6px}
+.step p{font-size:14.5px;color:var(--ink-2)}
+
+/* tool panel */
+.tool-panel{
+  display:grid;grid-template-columns:.95fr 1.05fr;gap:32px;
+  background:var(--ink);color:#e2e8f0;border-radius:22px;padding:36px;
+  align-items:center;overflow:hidden;position:relative;
+}
+.tool-panel::after{
+  content:"";position:absolute;right:-80px;bottom:-100px;width:280px;height:280px;
+  background:radial-gradient(circle,rgba(34,211,238,.28),transparent 70%);pointer-events:none;
+}
+.tool-panel h2{font-size:clamp(21px,2.4vw,26px);font-weight:800;color:#fff;letter-spacing:-.4px}
+.tool-panel p{margin-top:12px;font-size:14.5px;color:#94a3b8}
+.tool-form{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+.tool-form input{
+  flex:1 1 240px;min-width:0;
+  background:#1e293b;border:1px solid #334155;border-radius:11px;
+  padding:13px 15px;color:#f1f5f9;font-size:14.5px;font-family:inherit;
+}
+.tool-form input::placeholder{color:#64748b}
+.tool-form input:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.tool-form .btn-primary{flex:0 0 auto}
+.tool-note{margin-top:12px;font-size:12.5px;color:#64748b;position:relative;z-index:1}
+
+/* faq */
+.faq-list{display:grid;gap:14px;max-width:860px}
+details{
+  background:var(--card);border:1px solid var(--line);border-radius:13px;
+  padding:18px 20px;transition:.2s;
+}
+details[open]{border-color:#bae6fd;box-shadow:0 12px 28px -24px rgba(2,132,199,.6)}
+summary{
+  cursor:pointer;font-weight:700;font-size:15.5px;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:20px;color:var(--brand-deep);font-weight:400;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin-top:12px;font-size:14.5px;color:var(--ink-2)}
+
+/* cta band */
+.cta-band{
+  text-align:center;background:linear-gradient(135deg,#0f172a,#164e63);
+  border-radius:22px;padding:48px 28px;color:#fff;
+}
+.cta-band h2{font-size:clamp(22px,2.8vw,30px);font-weight:800;letter-spacing:-.6px}
+.cta-band p{margin-top:12px;color:#a5c9d8;font-size:15px;max-width:640px;margin-left:auto;margin-right:auto}
+.cta-band .hero-actions{justify-content:center}
+.cta-band .btn-ghost{background:transparent;border-color:#334e5e;color:#e2f4fb}
+.cta-band .btn-ghost:hover{border-color:var(--accent);color:#fff}
+
+/* footer */
+.site-footer{background:#0b1220;color:#94a3b8;padding:44px 0 28px;margin-top:56px;font-size:14px}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+.footer-brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:17px;margin-bottom:12px}
+.footer-brand .logo-mark{width:34px;height:34px;flex:0 0 34px;border-radius:10px;background:linear-gradient(135deg,#0ea5e9,#0f172a)}
+.footer-brand .logo-mark svg{width:19px;height:19px}
+.site-footer p{font-size:13.5px;line-height:1.8;color:#7d8ea6}
+.site-footer h4{font-size:14px;color:#e2e8f0;margin-bottom:12px;font-weight:700}
+.site-footer ul{list-style:none;display:grid;gap:8px;font-size:13.5px}
+.site-footer ul a:hover{color:var(--accent)}
+.footer-bottom{
+  margin-top:34px;padding-top:20px;border-top:1px solid #1e293b;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  font-size:12.5px;color:#64748b;
+}
+
+@media (max-width:920px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .cards{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr}
+  .tool-panel{grid-template-columns:1fr;padding:28px}
+  .footer-top{grid-template-columns:1fr 1fr}
+  nav.main-nav{display:none}
+}
+@media (max-width:600px){
+  .hero{padding:40px 0 36px}
+  section{padding:40px 0}
+  .cards{grid-template-columns:1fr}
+  .header-inner{height:60px}
+  .logo{font-size:15.5px}
+  .logo-mark{width:32px;height:32px;flex:0 0 32px;border-radius:9px}
+  .header-cta{padding:8px 13px;font-size:13px}
+  .hero-stats{gap:18px}
+  .stat b{font-size:19px}
+  .footer-top{grid-template-columns:1fr;gap:24px}
+  .tool-form .btn-primary{width:100%}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top" aria-label="91.short.com 首页">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 40l16-16M26 22h-4a8 8 0 000 16h6M38 42h4a8 8 0 000-16h-6" stroke="#38bdf8" stroke-width="6" fill="none" stroke-linecap="round"/>
+        </svg>
+      </span>
+      91.short.com
+    </a>
+    <nav class="main-nav" aria-label="主导航">
+      <ul>
+        <li><a href="#features">核心能力</a></li>
+        <li><a href="#howto">使用步骤</a></li>
+        <li><a href="#tool">缩短链接</a></li>
+        <li><a href="#faq">常见问题</a></li>
+      </ul>
+    </nav>
+    <a class="header-cta" href="#tool">开始缩短</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">短链接生成 · 网址缩短</span>
+        <h1>91.short.com</h1>
+        <p class="hero-lead">
+          91.short.com 是一个面向日常分享场景的短链接工具：把冗长的网址压缩成简短地址，方便在聊天、邮件、海报和社交平台中传递。
+          支持生成、管理与查看访问数据，让每一条链接都清楚可查。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#tool">立即生成短链接</a>
+          <a class="btn btn-ghost" href="#features">了解核心能力</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>一键</b><span>长链接转短链</span></div>
+          <div class="stat"><b>可自定义</b><span>短链后缀</span></div>
+          <div class="stat"><b>可追溯</b><span>点击访问记录</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-label">链接缩短示意</div>
+        <div class="link-row long">
+          <span class="dot"></span>
+          <span>https://example.com/article/2024/long-path-with-params?id=88231&amp;from=share</span>
+        </div>
+        <div class="arrow-down">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14M6 12l6 6 6-6"/></svg>
+        </div>
+        <div class="link-row short">
+          <span class="dot"></span>
+          <span>91.short.com/abc123</span>
+        </div>
+        <div class="link-row">
+          <span class="dot"></span>
+          <span>点击数据 · 来源渠道 · 访问趋势</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>91.short.com 能为你做什么</h2>
+        <p>围绕“把链接变短、把链接管好”两件事展开，适合个人、团队与内容运营的日常使用。</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 007 0l2-2a5 5 0 00-7-7l-1 1"/><path d="M14 10a5 5 0 00-7 0l-2 2a5 5 0 007 7l1-1"/></svg>
+          </div>
+          <h3>网址缩短</h3>
+          <p>粘贴任意长度的网页地址，91.short.com 会生成一条更短的链接，减少复制粘贴时的截断与错漏，让分享内容更整洁。</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <h3>自定义后缀</h3>
+          <p>可为短链接设置易读的字符后缀，把活动名称或栏目关键词放进地址里，方便口头传达，也便于在后台快速辨认。</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>
+          </div>
+          <h3>访问统计</h3>
+          <p>每条短链记录点击次数与访问趋势，帮助你判断哪个渠道带来了实际流量，为后续内容分发提供参考依据。</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 10h8M8 14h5"/></svg>
+          </div>
+          <h3>链接管理</h3>
+          <p>生成过的短链集中保存在列表里，可按时间或用途查找，随时复制、停用或查看详情，避免链接散落在各个聊天窗口。</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <h3>跳转可控</h3>
+          <p>短链访问时按记录的目标地址跳转，遇到地址变更可在后台调整，已发出的短链不必重新分发。</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+          </div>
+          <h3>多端可用</h3>
+          <p>在电脑浏览器和手机浏览器中打开 91.short.com 都能完成缩短操作，页面自适应屏幕，输入与复制都很顺手。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="steps-wrap">
+    <section id="howto">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>三步完成一次缩短</h2>
+          <p>不需要注册即可体验基础流程，熟悉后可以直接把 91.short.com 放进浏览器收藏栏。</p>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <span class="step-num">1</span>
+            <h3>粘贴原始链接</h3>
+            <p>复制需要分享的网页地址，完整粘贴到输入框。带有查询参数的地址同样可以处理，缩短后参数不会丢失。</p>
+          </div>
+          <div class="step">
+            <span class="step-num">2</span>
+            <h3>生成短链接</h3>
+            <p>点击生成按钮，91.short.com 会给出一条简短地址。需要更容易记忆时，可填写自定义后缀后再生成。</p>
+          </div>
+          <div class="step">
+            <span class="step-num">3</span>
+            <h3>复制与跟踪</h3>
+            <p>复制短链发送到目标渠道，之后回到列表查看点击数据，按访问表现调整分享重点。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section id="tool">
+    <div class="wrap">
+      <div class="tool-panel">
+        <div>
+          <h2>现在就把长链接变短</h2>
+          <p>输入完整网址，生成一条 91.short.com 短链接。自定义后缀为可选项，留空时由系统自动分配。</p>
+        </div>
+        <div>
+          <form class="tool-form" id="shortForm" novalidate>
+            <input type="url" id="longUrl" name="longUrl" placeholder="粘贴 https:// 开头的长链接" aria-label="原始长链接" required>
+            <button class="btn btn-primary" type="submit">生成短链接</button>
+          </form>
+          <p class="tool-note" id="formNote">示例：https://example.com/page/123 → 91.short.com/xxxx</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>关于短链接的常见问题</h2>
+        <p>整理使用 91.short.com 时最常被问到的几点，帮助你快速判断是否适合当前场景。</p>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary>短链接会改变原有的跳转目标吗？</summary>
+          <p>不会。短链只负责把访问者引导到登记的原始地址，页面内容仍由原网站提供。若目标地址后续发生变动，可在链接详情中更新，已分发的短链继续可用。</p>
+        </details>
+        <details>
+          <summary>自定义后缀有什么限制？</summary>
+          <p>后缀需要保持唯一，不能与已有短链重复，建议使用简短、易读的字母或数字组合。设置后该后缀与链接绑定，便于在后台按名称识别。</p>
+        </details>
+        <details>
+          <summary>访问统计记录哪些内容？</summary>
+          <p>主要记录点击次数与访问时间分布，用于判断链接的传播效果。统计数据反映的是访问行为本身，不涉及访问者的个人身份信息。</p>
+        </details>
+        <details>
+          <summary>为什么分享时更推荐用短链接？</summary>
+          <p>长地址在聊天工具、短信和印刷物料中容易被截断或换行，短链更短、更整齐，也方便口头转述。对于需要多次分发的同一内容，短链还能统一入口，便于后续统计。</p>
+        </details>
+        <details>
+          <summary>手机上可以使用 91.short.com 吗？</summary>
+          <p>可以。91.short.com 的页面按响应式布局设计，手机浏览器打开后输入框与按钮会自适应屏幕宽度，复制与分享操作与桌面端一致。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cta-band">
+        <h2>让分享地址更短、更清楚</h2>
+        <p>无论是内容分发、活动通知还是内部文档，91.short.com 都能把长网址整理成一条便于传递的短链接，并留下可查看的访问记录。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#tool">生成我的短链接</a>
+          <a class="btn btn-ghost" href="#features">再看一次功能</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 40l16-16M26 22h-4a8 8 0 000 16h6M38 42h4a8 8 0 000-16h-6" stroke="#38bdf8" stroke-width="6" fill="none" stroke-linecap="round"/>
+            </svg>
+          </span>
+          91.short.com
+        </div>
+        <p>91.short.com 专注网址缩短与短链接管理，帮助你把长地址变成简洁、可统计的分享入口。</p>
+      </div>
+      <div>
+        <h4>页面导航</h4>
+        <ul>
+          <li><a href="#features">核心能力</a></li>
+          <li><a href="#howto">使用步骤</a></li>
+          <li><a href="#tool">缩短链接</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>使用提示</h4>
+        <ul>
+          <li><a href="#tool">粘贴完整网址</a></li>
+          <li><a href="#faq">了解自定义后缀</a></li>
+          <li><a href="#faq">查看访问统计说明</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 91.short.com · 短链接生成与网址缩短工具</span>
+      <span>链接短一点，分享清楚一点</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form = document.getElementById('shortForm');
+  var input = document.getElementById('longUrl');
+  var note = document.getElementById('formNote');
+  if(!form) return;
+
+  function randomCode(n){
+    var chars = 'abcdefghijkmnpqrstuvwxyz23456789';
+    var out = '';
+    for(var i=0;i<n;i++){ out += chars.charAt(Math.floor(Math.random()*chars.length)); }
+    return out;
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var value = (input.value || '').trim();
+    if(!value){
+      note.textContent = '请先粘贴需要缩短的原始链接。';
+      note.style.color = '#fca5a5';
+      input.focus();
+      return;
+    }
+    if(!/^https?:\/\//i.test(value)){
+      note.textContent = '链接需以 http:// 或 https:// 开头，请检查后重试。';
+      note.style.color = '#fca5a5';
+      input.focus();
+      return;
+    }
+    var short = '91.short.com/' + randomCode(6);
+    note.textContent = '已生成本地预览短链：' + short + '（演示结果，未写入服务器）';
+    note.style.color = '#67e8f9';
+  });
+})();
+</script>
+</body>
+</html>
