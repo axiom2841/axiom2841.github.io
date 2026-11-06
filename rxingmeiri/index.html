@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>r星每日大赛在线观看-每日大赛在线观看入口_热点内容回看与榜单速览</title>
+<meta name="description" content="r星每日大赛在线观看主题首页，汇集每日大赛热点内容入口、当日看点速览、热门片段回看与榜单速览，帮助访问者快速找到想看的内容并了解当天讨论焦点。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121018'/%3E%3Ccircle cx='32' cy='32' r='15' fill='none' stroke='%23ffb545' stroke-width='4'/%3E%3Cpath d='M27 24.5 42 32 27 39.5z' fill='%23ff5c7a'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#121018;
+    --ink-2:#1c1926;
+    --paper:#f6f3ee;
+    --card:#ffffff;
+    --line:#e3ddd4;
+    --gold:#ffb545;
+    --rose:#ff5c7a;
+    --muted:#6b6577;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{width:min(1120px,92vw);margin:0 auto;}
+
+  /* header */
+  header.site{
+    background:var(--ink);
+    color:#f4efe8;
+    position:sticky;top:0;z-index:50;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .bar{display:flex;align-items:center;gap:24px;padding:14px 0;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;letter-spacing:.2px;}
+  .logo svg{flex:none;}
+  nav.main{margin-left:auto;display:flex;gap:22px;font-size:14.5px;}
+  nav.main a{color:#cfc7dc;padding:4px 0;border-bottom:2px solid transparent;transition:.2s;}
+  nav.main a:hover{color:#fff;border-bottom-color:var(--gold);}
+  .menu-btn{display:none;margin-left:auto;background:none;border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:10px;padding:6px 12px;font-size:14px;cursor:pointer;}
+  .mobile-nav{display:none;flex-direction:column;gap:2px;padding:8px 0 16px;border-top:1px solid rgba(255,255,255,.1);}
+  .mobile-nav a{padding:10px 2px;font-size:15px;color:#d6cfe2;}
+
+  /* hero */
+  .hero{
+    background:
+      radial-gradient(900px 420px at 85% -10%, rgba(255,92,122,.28), transparent 70%),
+      radial-gradient(700px 380px at 10% 110%, rgba(255,181,69,.18), transparent 70%),
+      var(--ink);
+    color:#f6f3ee;
+    padding:56px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:center;}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.12em;color:var(--gold);
+    border:1px solid rgba(255,181,69,.4);
+    padding:4px 12px;border-radius:999px;margin-bottom:18px;
+  }
+  .kicker i{width:6px;height:6px;border-radius:50%;background:var(--rose);display:inline-block;}
+  h1{font-size:clamp(26px,3.4vw,42px);line-height:1.25;margin:0 0 18px;font-weight:800;letter-spacing:.5px;}
+  .hero p.lead{color:#c9c1d6;font-size:16px;margin:0 0 26px;max-width:34em;}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 22px;border-radius:12px;font-size:15px;font-weight:600;
+    transition:.2s;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--gold);color:#231a08;}
+  .btn-primary:hover{background:#ffc468;}
+  .btn-ghost{border-color:rgba(255,255,255,.3);color:#f4efe8;}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+  .hero-art{position:relative;}
+  .hero-art .frame{
+    border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.14);
+    background:linear-gradient(160deg,#241f31,#15121c);
+    box-shadow:0 24px 60px rgba(0,0,0,.45);
+  }
+  .hero-stats{display:flex;gap:28px;margin-top:26px;flex-wrap:wrap;}
+  .hero-stats div{font-size:13px;color:#9d95ae;}
+  .hero-stats b{display:block;font-size:22px;color:#fff;font-weight:700;line-height:1.3;}
+
+  /* sections */
+  section{padding:64px 0;}
+  section.alt{background:#fff;}
+  .sec-head{display:flex;align-items:flex-end;gap:16px;margin-bottom:32px;flex-wrap:wrap;}
+  .sec-head h2{font-size:clamp(21px,2.4vw,27px);margin:0;font-weight:800;letter-spacing:.4px;}
+  .sec-head span{font-size:13px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+  .sec-head .line{flex:1;height:1px;background:var(--line);min-width:40px;margin-bottom:8px;}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 22px;transition:.22s;display:flex;flex-direction:column;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(18,16,24,.09);border-color:#d3cabb;}
+  .card .tag{
+    align-self:flex-start;font-size:12px;font-weight:600;color:#8a4a00;
+    background:#fff1d6;border-radius:999px;padding:3px 10px;margin-bottom:14px;
+  }
+  .card h3{font-size:17px;margin:0 0 10px;font-weight:700;}
+  .card p{font-size:14.5px;color:var(--muted);margin:0 0 18px;}
+  .card .more{margin-top:auto;font-size:13.5px;font-weight:600;color:#b8462a;}
+  .card .more::after{content:" →";}
+
+  /* list */
+  .list-panel{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;}
+  .list-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:8px 22px;}
+  .item{display:flex;gap:16px;padding:18px 0;border-bottom:1px dashed var(--line);align-items:flex-start;}
+  .item:last-child{border-bottom:none;}
+  .num{
+    flex:none;width:34px;height:34px;border-radius:10px;background:var(--ink);color:var(--gold);
+    display:grid;place-items:center;font-weight:700;font-size:15px;
+  }
+  .item h4{margin:0 0 4px;font-size:15.5px;font-weight:700;}
+  .item p{margin:0;font-size:13.8px;color:var(--muted);}
+  .side-box{background:var(--ink);color:#e8e2f0;border-radius:var(--radius);padding:26px 24px;}
+  .side-box h3{margin:0 0 14px;font-size:17px;color:#fff;}
+  .side-box p{font-size:14px;color:#b6acc6;margin:0 0 18px;}
+  .side-box ul{margin:0 0 22px;padding-left:18px;font-size:14px;color:#c9c1d6;}
+  .side-box li{margin-bottom:9px;}
+
+  /* search */
+  .search-panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;margin-bottom:26px;}
+  .search-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .search-row input{
+    flex:1;min-width:200px;padding:12px 16px;border:1px solid var(--line);border-radius:12px;
+    font-size:15px;font-family:inherit;background:#faf8f4;color:var(--ink);
+  }
+  .search-row input:focus{outline:2px solid rgba(255,92,122,.35);border-color:var(--rose);}
+  .search-row button{
+    padding:12px 24px;border:none;border-radius:12px;background:var(--ink);color:#fff;
+    font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:.2s;
+  }
+  .search-row button:hover{background:#2c2739;}
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+  .chip{
+    font-size:13px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);
+    background:#faf8f4;color:var(--muted);cursor:pointer;transition:.2s;font-family:inherit;
+  }
+  .chip:hover,.chip.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .result-note{font-size:13.5px;color:var(--muted);margin-top:14px;min-height:1.4em;}
+
+  /* download */
+  .dl-box{
+    background:linear-gradient(135deg,#1b1726,#2a2338);color:#f2ecf8;
+    border-radius:22px;padding:38px 36px;display:flex;gap:30px;align-items:center;flex-wrap:wrap;
+  }
+  .dl-box h3{margin:0 0 8px;font-size:21px;color:#fff;}
+  .dl-box p{margin:0;font-size:14.5px;color:#b6acc6;max-width:38em;}
+  .btn-dl{
+    margin-left:auto;background:var(--gold);color:#231a08;padding:13px 30px;border-radius:12px;
+    font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px;
+    pointer-events:none;opacity:.9;
+  }
+
+  /* footer */
+  footer.site{background:var(--ink);color:#a89fba;padding:44px 0 30px;font-size:13.5px;}
+  .foot-grid{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-bottom:26px;}
+  .foot-brand{max-width:30em;}
+  .foot-brand .logo{margin-bottom:12px;color:#fff;}
+  .foot-links{display:flex;gap:40px;flex-wrap:wrap;}
+  .foot-links h5{color:#fff;font-size:14px;margin:0 0 10px;font-weight:700;}
+  .foot-links a{display:block;margin-bottom:7px;color:#a89fba;}
+  .foot-links a:hover{color:var(--gold);}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;font-size:12.5px;color:#7d748e;}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:34px;}
+    .hero{padding:40px 0 48px;}
+    .cards{grid-template-columns:1fr 1fr;}
+    .list-panel{grid-template-columns:1fr;}
+    nav.main{display:none;}
+    .menu-btn{display:block;}
+    .mobile-nav.open{display:flex;}
+    section{padding:46px 0;}
+    .dl-box{padding:28px 24px;}
+    .btn-dl{margin-left:0;}
+  }
+  @media (max-width:600px){
+    .cards{grid-template-columns:1fr;}
+    .bar{padding:12px 0;}
+    .logo{font-size:14px;}
+    .logo span{max-width:190px;line-height:1.3;}
+    .hero-stats{gap:20px;}
+    .list-box{padding:4px 16px;}
+    .foot-links{gap:26px;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="r星每日大赛在线观看 首页">
+      <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#1c1926"/>
+        <circle cx="32" cy="32" r="15" fill="none" stroke="#ffb545" stroke-width="4"/>
+        <path d="M27 24.5 42 32 27 39.5z" fill="#ff5c7a"/>
+      </svg>
+      <span>r星每日大赛在线观看</span>
+    </a>
+    <nav class="main" aria-label="主导航">
+      <a href="#today">今日看点</a>
+      <a href="#clips">热门回看</a>
+      <a href="#board">榜单速览</a>
+      <a href="#find">搜索入口</a>
+      <a href="#download">客户端</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav">菜单</button>
+  </div>
+  <div class="wrap">
+    <nav class="mobile-nav" id="mobileNav" aria-label="移动端导航">
+      <a href="#today">今日看点</a>
+      <a href="#clips">热门回看</a>
+      <a href="#board">榜单速览</a>
+      <a href="#find">搜索入口</a>
+      <a href="#download">客户端</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="kicker"><i></i>每日更新 · 热点内容聚合</span>
+        <h1>r星每日大赛在线观看</h1>
+        <p class="lead">这里是 r星每日大赛在线观看 的主题首页。每天的大赛热点、话题片段与讨论焦点会集中呈现在这一页，方便你按顺序浏览当日内容，也能从榜单和搜索入口直达感兴趣的部分。</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#today">进入今日看点</a>
+          <a class="btn btn-ghost" href="#find">搜索想看的内容</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>每日</b>内容更新节奏</div>
+          <div><b>3 个</b>浏览入口方向</div>
+          <div><b>1 页</b>集中速览</div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="frame">
+          <svg viewBox="0 0 460 320" role="img" aria-label="r星每日大赛在线观看 页面视觉示意">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#2c2539"/><stop offset="1" stop-color="#16131f"/>
+              </linearGradient>
+              <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#ffb545"/><stop offset="1" stop-color="#ff5c7a"/>
+              </linearGradient>
+            </defs>
+            <rect width="460" height="320" fill="url(#g1)"/>
+            <circle cx="360" cy="70" r="86" fill="none" stroke="#ffb545" stroke-opacity=".28" stroke-width="1.5"/>
+            <circle cx="360" cy="70" r="58" fill="none" stroke="#ff5c7a" stroke-opacity=".3" stroke-width="1.5"/>
+            <circle cx="360" cy="70" r="30" fill="none" stroke="#ffb545" stroke-opacity=".5" stroke-width="1.5"/>
+            <rect x="36" y="52" width="200" height="14" rx="7" fill="#ffffff" fill-opacity=".18"/>
+            <rect x="36" y="80" width="140" height="10" rx="5" fill="#ffffff" fill-opacity=".1"/>
+            <rect x="36" y="128" width="250" height="120" rx="14" fill="#241f31" stroke="#ffffff" stroke-opacity=".1"/>
+            <circle cx="86" cy="188" r="26" fill="url(#g2)" fill-opacity=".85"/>
+            <path d="M78 176 98 188 78 200z" fill="#1b1726"/>
+            <rect x="128" y="160" width="130" height="10" rx="5" fill="#ffffff" fill-opacity=".22"/>
+            <rect x="128" y="182" width="100" height="9" rx="4.5" fill="#ffffff" fill-opacity=".13"/>
+            <rect x="128" y="202" width="118" height="9" rx="4.5" fill="#ffffff" fill-opacity=".13"/>
+            <rect x="36" y="268" width="90" height="26" rx="13" fill="#ffb545" fill-opacity=".9"/>
+            <rect x="138" y="268" width="90" height="26" rx="13" fill="#ffffff" fill-opacity=".12"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="today">
+    <div class="wrap">
+      <div class="sec-head">
+        <span>Today</span>
+        <h2>今日看点：先把当天内容看清楚</h2>
+        <div class="line"></div>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="tag">当日焦点</span>
+          <h3>当天讨论集中在哪些片段</h3>
+          <p>每日大赛的内容往往围绕几个被反复提起的片段展开。这一栏把当天讨论度较高的方向单独列出，帮助你在 r星每日大赛在线观看 的过程中先抓住主线，而不是被零散内容分散注意力。</p>
+          <span class="more">查看焦点片段</span>
+        </article>
+        <article class="card">
+          <span class="tag">内容节奏</span>
+          <h3>一天之内内容如何分布</h3>
+          <p>大赛相关内容通常分批出现，早间以预告和讨论为主，晚间则集中出现回看片段。按时间顺序浏览，能让你在使用 r星每日大赛在线观看 时更顺畅地跟上当天进度。</p>
+          <span class="more">了解更新节奏</span>
+        </article>
+        <article class="card">
+          <span class="tag">观看建议</span>
+          <h3>先看片段还是先看榜单</h3>
+          <p>如果你只关心结论，可以从榜单速览入手；如果更在意过程，则建议从热点片段开始。两种路径在 r星每日大赛在线观看 中都能走通，区别在于你更想先看到哪一层内容。</p>
+          <span class="more">选择浏览路径</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="clips">
+    <div class="wrap">
+      <div class="sec-head">
+        <span>Clips</span>
+        <h2>热门回看：按话题整理的内容条目</h2>
+        <div class="line"></div>
+      </div>
+      <div class="list-panel">
+        <div class="list-box">
+          <div class="item">
+            <div class="num">01</div>
+            <div>
+              <h4>开场阶段的高讨论片段</h4>
+              <p>大赛开场往往信息密度较高，这段内容通常最先被转发。r星每日大赛在线观看 的回看条目会保留这类片段的顺序，方便你从开头理清来龙去脉。</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="num">02</div>
+            <div>
+              <h4>中途反转与意外走向</h4>
+              <p>当天出现明显反转时，相关讨论会在短时间内集中。此处条目用于标记这些节点，让你在 r星每日大赛在线观看 时不必翻找零散记录。</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="num">03</div>
+            <div>
+              <h4>结尾总结与后续讨论</h4>
+              <p>结尾部分常被用来回应当天争议。关注这一栏，能看到 r星每日大赛在线观看 内容在结束后的讨论延续，而不只是一次性浏览。</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="num">04</div>
+            <div>
+              <h4>跨天延续的老话题</h4>
+              <p>部分话题会从前一天延续下来，形成连续关注。这里会把仍被提及的旧内容重新列出，让 r星每日大赛在线观看 的浏览保持连贯。</p>
+            </div>
+          </div>
+        </div>
+        <aside class="side-box">
+          <h3>回看时的三个小提示</h3>
+          <p>内容量大时，按结构浏览比逐个点开更省时间。</p>
+          <ul>
+            <li>先确认当天主线，再补细节片段。</li>
+            <li>遇到重复标题时，优先看更新较晚的条目。</li>
+            <li>把感兴趣的片段记下来，方便回头对照榜单。</li>
+          </ul>
+          <a class="btn btn-ghost" href="#find">用搜索定位片段</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="board">
+    <div class="wrap">
+      <div class="sec-head">
+        <span>Board</span>
+        <h2>榜单速览：当天内容的关注排序</h2>
+        <div class="line"></div>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="tag">关注度</span>
+          <h3>被提及次数较多的条目</h3>
+          <p>关注度反映的是当天内容被讨论的频次，而不是内容质量的判断。在 r星每日大赛在线观看 的榜单里，这类条目适合用来快速了解大家在聊什么。</p>
+          <span class="more">查看关注条目</span>
+        </article>
+        <article class="card">
+          <span class="tag">讨论热度</span>
+          <h3>争议集中出现的片段</h3>
+          <p>争议片段往往能带出更多背景信息。榜单会把这类内容单独归类，让 r星每日大赛在线观看 的读者在浏览时能分辨“热门”与“有分歧”两种不同状态。</p>
+          <span class="more">查看争议片段</span>
+        </article>
+        <article class="card">
+          <span class="tag">回看价值</span>
+          <h3>值得重新看一遍的内容</h3>
+          <p>有些片段第一次看容易漏掉细节，回看价值更高。这一栏不追求数量，只保留在 r星每日大赛在线观看 中被反复回看的部分，作为补充浏览的参考。</p>
+          <span class="more">查看回看条目</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="find">
+    <div class="wrap">
+      <div class="sec-head">
+        <span>Find</span>
+        <h2>搜索入口：按关键词找到对应内容</h2>
+        <div class="line"></div>
+      </div>
+      <div class="search-panel">
+        <form class="search-row" id="searchForm" role="search">
+          <label for="kw" class="sr-only" style="position:absolute;left:-9999px;">输入关键词</label>
+          <input id="kw" name="kw" type="search" placeholder="输入片段名称、话题词或日期，例如：开场、反转" autocomplete="off">
+          <button type="submit">搜索</button>
+        </form>
+        <div class="chips" id="chips">
+          <button class="chip" type="button">开场</button>
+          <button class="chip" type="button">反转</button>
+          <button class="chip" type="button">总结</button>
+          <button class="chip" type="button">榜单</button>
+        </div>
+        <p class="result-note" id="resultNote" aria-live="polite">可输入上方任一关键词，页面会定位到对应的内容分区。</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="tag">入口一</span>
+          <h3>从今日看点进入</h3>
+          <p>适合第一次访问的读者。先看当天主线，再决定是否深入片段。r星每日大赛在线观看 的浏览顺序在这条路径上最清晰。</p>
+          <a class="more" href="#today">前往今日看点</a>
+        </article>
+        <article class="card">
+          <span class="tag">入口二</span>
+          <h3>从热门回看进入</h3>
+          <p>适合已经了解当天概况、想补细节的读者。按条目顺序查看，能减少重复浏览，让 r星每日大赛在线观看 的过程更有条理。</p>
+          <a class="more" href="#clips">前往热门回看</a>
+        </article>
+        <article class="card">
+          <span class="tag">入口三</span>
+          <h3>从榜单速览进入</h3>
+          <p>适合只想看结论的读者。榜单提供关注排序，r星每日大赛在线观看 的内容判断仍需要结合片段本身，两者配合使用更稳妥。</p>
+          <a class="more" href="#board">前往榜单速览</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="download">
+    <div class="wrap">
+      <div class="dl-box">
+        <div>
+          <h3>移动端浏览更顺手</h3>
+          <p>客户端页面针对小屏做了排版调整，卡片改为单列排列，导航折叠为菜单，阅读 r星每日大赛在线观看 相关内容时不必频繁缩放。安装包将在后续提供，当前入口处于占位状态。</p>
+        </div>
+        <a class="btn-dl" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#231a08" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12"/><path d="m6 11 6 6 6-6"/><path d="M4 21h16"/>
+          </svg>
+          下载
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">
+          <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#1c1926"/>
+            <circle cx="32" cy="32" r="15" fill="none" stroke="#ffb545" stroke-width="4"/>
+            <path d="M27 24.5 42 32 27 39.5z" fill="#ff5c7a"/>
+          </svg>
+          <span>r星每日大赛在线观看</span>
+        </div>
+        <p>围绕每日大赛热点内容整理的主题首页，提供今日看点、热门回看、榜单速览与搜索入口，帮助访问者按自己的节奏浏览 r星每日大赛在线观看 的相关内容。</p>
+      </div>
+      <div class="foot-links">
+        <div>
+          <h5>内容分区</h5>
+          <a href="#today">今日看点</a>
+          <a href="#clips">热门回看</a>
+          <a href="#board">榜单速览</a>
+        </div>
+        <div>
+          <h5>使用入口</h5>
+          <a href="#find">搜索入口</a>
+          <a href="#download">客户端</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      r星每日大赛在线观看 · 页面内容按主题分区组织，具体片段与榜单以每日更新为准。
+    </div>
+  </div>
+</footer>
+
+<script>
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileNav = document.getElementById('mobileNav');
+  menuBtn.addEventListener('click', function(){
+    var open = mobileNav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mobileNav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded','false');
+    });
+  });
+
+  var map = {'开场':'today','反转':'clips','总结':'clips','榜单':'board','今日':'today','回看':'clips'};
+  var note = document.getElementById('resultNote');
+  var form = document.getElementById('searchForm');
+  var input = document.getElementById('kw');
+
+  function doSearch(value){
+    var key = (value || '').trim();
+    if(!key){ note.textContent = '请输入关键词后再搜索。'; return; }
+    var target = null;
+    Object.keys(map).forEach(function(k){
+      if(!target && key.indexOf(k) !== -1){ target = map[k]; }
+    });
+    if(target){
+      var el = document.getElementById(target);
+      if(el){
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+        note.textContent = '已定位到与“' + key + '”相关的内容分区。';
+        return;
+      }
+    }
+    note.textContent = '暂无与“' + key + '”完全对应的分区，可尝试：开场、反转、总结、榜单。';
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    doSearch(input.value);
+  });
+
+  document.querySelectorAll('#chips .chip').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('#chips .chip').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      input.value = btn.textContent;
+      doSearch(btn.textContent);
+    });
+  });
+</script>
+</body>
+  </html>
