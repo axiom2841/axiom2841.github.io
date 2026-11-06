@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>风车动漫-在线动漫观看_新番连载与番剧专题</title>
+<meta name="description" content="风车动漫首页，汇集新番连载、热门番剧专题与在线动漫观看入口，按季分类浏览动画作品，方便快速找到想看的番剧与更新动态。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2a4a'/%3E%3Cpath d='M32 32 L32 10 L44 16 L32 32 Z' fill='%23ffd166'/%3E%3Cpath d='M32 32 L52 40 L46 52 L32 32 Z' fill='%23ef476f'/%3E%3Cpath d='M32 32 L12 40 L18 52 L32 32 Z' fill='%2306d6a0'/%3E%3Cpath d='M32 32 L32 54 L20 48 L32 32 Z' fill='%234cc9f0'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#12233a;
+    --ink-soft:#4a5b72;
+    --line:#dde5ef;
+    --bg:#f6f8fc;
+    --card:#ffffff;
+    --navy:#0f2a4a;
+    --navy-2:#183a63;
+    --gold:#ffd166;
+    --rose:#ef476f;
+    --mint:#06d6a0;
+    --sky:#4cc9f0;
+    --radius:14px;
+    --shadow:0 6px 22px rgba(18,35,58,.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{width:min(1120px,92vw);margin:0 auto;}
+
+  /* ---------- header ---------- */
+  header.site{
+    background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%);
+    color:#eaf2fb;
+    position:sticky;top:0;z-index:50;
+    box-shadow:0 2px 14px rgba(15,42,74,.28);
+  }
+  .topbar{
+    display:flex;align-items:center;gap:18px;
+    padding:12px 0;flex-wrap:wrap;
+  }
+  .brand{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .brand .mark{width:38px;height:38px;flex-shrink:0;}
+  .brand .name{
+    font-size:1.22rem;font-weight:800;letter-spacing:.5px;color:#fff;
+  }
+  nav.main{margin-left:auto;}
+  nav.main ul{
+    list-style:none;display:flex;gap:6px;margin:0;padding:0;flex-wrap:wrap;
+  }
+  nav.main a{
+    display:block;padding:7px 13px;border-radius:999px;
+    font-size:.93rem;color:#cfe0f2;transition:.2s;
+  }
+  nav.main a:hover,nav.main a:focus-visible{
+    background:rgba(255,255,255,.14);color:#fff;
+  }
+  nav.main a.cta{
+    background:var(--gold);color:#1a2a3d;font-weight:700;
+  }
+  nav.main a.cta:hover{background:#ffe08a;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    background:
+      radial-gradient(900px 340px at 88% -12%,rgba(76,201,240,.34),transparent 70%),
+      radial-gradient(700px 300px at 6% 110%,rgba(239,71,111,.28),transparent 70%),
+      linear-gradient(160deg,#0f2a4a 0%,#173a63 58%,#1d4a7c 100%);
+    color:#eef5fd;
+    padding:52px 0 46px;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+    gap:40px;align-items:center;
+  }
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.8rem;letter-spacing:2px;
+    background:rgba(255,209,102,.16);
+    border:1px solid rgba(255,209,102,.45);
+    color:var(--gold);
+    padding:4px 12px;border-radius:999px;margin-bottom:18px;
+  }
+  h1{
+    font-size:clamp(2rem,4.6vw,3.05rem);
+    line-height:1.22;margin:0 0 16px;font-weight:800;letter-spacing:1px;color:#fff;
+  }
+  .hero p.lead{
+    margin:0 0 26px;color:#c6d8ec;font-size:1.02rem;max-width:34em;
+  }
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 22px;border-radius:999px;font-weight:700;font-size:.95rem;
+    border:1px solid transparent;transition:.2s;cursor:pointer;
+  }
+  .btn-primary{background:var(--rose);color:#fff;box-shadow:0 6px 18px rgba(239,71,111,.35);}
+  .btn-primary:hover{background:#ff5f84;}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#eaf2fb;border-color:rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn[aria-disabled="true"]{opacity:.85;}
+  .hero-art{display:flex;justify-content:center;}
+  .hero-art svg{width:100%;max-width:340px;height:auto;filter:drop-shadow(0 12px 28px rgba(0,0,0,.32));}
+
+  /* ---------- stats strip ---------- */
+  .strip{
+    background:var(--card);border-bottom:1px solid var(--line);
+  }
+  .strip ul{
+    list-style:none;display:grid;grid-template-columns:repeat(4,1fr);
+    margin:0;padding:18px 0;gap:10px;text-align:center;
+  }
+  .strip li strong{display:block;font-size:1.18rem;color:var(--navy);}
+  .strip li span{font-size:.82rem;color:var(--ink-soft);}
+
+  /* ---------- sections ---------- */
+  section{padding:52px 0;}
+  section.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .sec-head{margin-bottom:26px;max-width:44em;}
+  .sec-head h2{
+    font-size:1.5rem;margin:0 0 8px;color:var(--navy);font-weight:800;letter-spacing:.5px;
+  }
+  .sec-head h2 .bar{
+    display:inline-block;width:26px;height:5px;border-radius:3px;background:var(--gold);
+    vertical-align:middle;margin-right:10px;
+  }
+  .sec-head p{margin:0;color:var(--ink-soft);font-size:.94rem;}
+
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px;box-shadow:var(--shadow);
+  }
+  .card .ico{
+    width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+    margin-bottom:14px;
+  }
+  .card h3{margin:0 0 8px;font-size:1.05rem;color:var(--navy);}
+  .card p{margin:0;font-size:.9rem;color:var(--ink-soft);line-height:1.8;}
+
+  /* ---------- seasonal list ---------- */
+  .season-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  .season-item{
+    display:flex;gap:16px;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+  }
+  .season-item .thumb{
+    width:74px;height:96px;border-radius:10px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:.75rem;color:#fff;writing-mode:vertical-rl;letter-spacing:3px;font-weight:700;
+  }
+  .season-item h3{margin:0 0 6px;font-size:1rem;color:var(--navy);}
+  .season-item p{margin:0;font-size:.86rem;color:var(--ink-soft);}
+  .tag{
+    display:inline-block;font-size:.72rem;padding:1px 9px;border-radius:999px;
+    background:#eef4fb;color:#2a5b93;margin-top:8px;margin-right:6px;
+  }
+
+  /* ---------- filter ---------- */
+  .filter{
+    display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:22px;
+  }
+  .filter input[type="search"]{
+    flex:1 1 260px;min-width:0;
+    padding:10px 16px;border-radius:999px;border:1px solid var(--line);
+    background:#fff;font-size:.92rem;color:var(--ink);outline:none;font-family:inherit;
+  }
+  .filter input[type="search"]:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(76,201,240,.18);}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;}
+  .chip{
+    padding:7px 15px;border-radius:999px;border:1px solid var(--line);
+    background:#fff;font-size:.85rem;color:var(--ink-soft);cursor:pointer;font-family:inherit;
+    transition:.18s;
+  }
+  .chip:hover{border-color:var(--sky);color:var(--navy);}
+  .chip.active{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:600;}
+  .catalog{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .show{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:14px;box-shadow:var(--shadow);
+  }
+  .show .cover{
+    height:86px;border-radius:9px;margin-bottom:10px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:.74rem;color:#fff;letter-spacing:2px;font-weight:700;
+  }
+  .show h4{margin:0 0 4px;font-size:.92rem;color:var(--navy);}
+  .show p{margin:0;font-size:.78rem;color:var(--ink-soft);}
+  .empty{
+    grid-column:1/-1;text-align:center;color:var(--ink-soft);font-size:.92rem;
+    padding:28px 0;display:none;
+  }
+
+  /* ---------- watch path ---------- */
+  .steps{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:step;
+  }
+  .step{
+    position:relative;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:22px 20px 20px;box-shadow:var(--shadow);
+  }
+  .step::before{
+    counter-increment:step;content:"0" counter(step);
+    font-size:.78rem;font-weight:800;letter-spacing:1px;color:var(--rose);
+    display:block;margin-bottom:8px;
+  }
+  .step h3{margin:0 0 8px;font-size:1rem;color:var(--navy);}
+  .step p{margin:0;font-size:.88rem;color:var(--ink-soft);}
+
+  /* ---------- note / download ---------- */
+  .panel{
+    display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);
+    gap:26px;align-items:center;
+    background:linear-gradient(140deg,#0f2a4a,#1d4a7c);
+    color:#e9f2fb;border-radius:18px;padding:32px 30px;
+    box-shadow:0 14px 36px rgba(15,42,74,.25);
+  }
+  .panel h2{margin:0 0 10px;font-size:1.35rem;color:#fff;}
+  .panel p{margin:0;font-size:.92rem;color:#c3d7ec;}
+  .panel .side{display:flex;flex-direction:column;gap:12px;}
+  .panel .side .btn{justify-content:center;}
+
+  /* ---------- footer ---------- */
+  footer.site{
+    background:#0b1f37;color:#93a9c2;font-size:.86rem;
+    padding:34px 0 28px;margin-top:0;
+  }
+  .foot-grid{
+    display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;align-items:flex-start;
+  }
+  .foot-brand{display:flex;align-items:center;gap:10px;color:#e6f0fa;font-weight:800;font-size:1.02rem;}
+  .foot-brand .mark{width:30px;height:30px;}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap;}
+  .foot-links a:hover{color:var(--gold);}
+  .foot-note{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;line-height:1.9;}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:28px;}
+    .hero-art{order:-1;justify-content:flex-start;}
+    .hero-art svg{max-width:220px;}
+    .cols{grid-template-columns:1fr 1fr;}
+    .catalog{grid-template-columns:1fr 1fr;}
+    .steps{grid-template-columns:1fr;}
+    .panel{grid-template-columns:1fr;}
+  }
+  @media(max-width:640px){
+    .topbar{padding:10px 0;}
+    nav.main{margin-left:0;width:100%;}
+    nav.main ul{gap:4px;}
+    nav.main a{padding:6px 10px;font-size:.85rem;}
+    .hero{padding:36px 0 34px;}
+    .strip ul{grid-template-columns:1fr 1fr;gap:14px;}
+    .cols{grid-template-columns:1fr;}
+    .season-grid{grid-template-columns:1fr;}
+    .catalog{grid-template-columns:1fr;}
+    section{padding:38px 0;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap topbar">
+    <a class="brand" href="#top" aria-label="风车动漫 首页">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#173a63"/>
+        <path d="M32 32 L32 10 L44 16 L32 32 Z" fill="#ffd166"/>
+        <path d="M32 32 L52 40 L46 52 L32 32 Z" fill="#ef476f"/>
+        <path d="M32 32 L12 40 L18 52 L32 32 Z" fill="#06d6a0"/>
+        <path d="M32 32 L32 54 L20 48 L32 32 Z" fill="#4cc9f0"/>
+        <circle cx="32" cy="32" r="4" fill="#fff"/>
+      </svg>
+      <span class="name">风车动漫</span>
+    </a>
+    <nav class="main" aria-label="主导航">
+      <ul>
+        <li><a href="#season">新番连载</a></li>
+        <li><a href="#catalog">番剧索引</a></li>
+        <li><a href="#path">观看路径</a></li>
+        <li><a href="#about">站点说明</a></li>
+        <li><a class="cta" href="#catalog">立即找番</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="kicker">在线动漫 · 按季浏览</span>
+        <h1>风车动漫</h1>
+        <p class="lead">风车动漫是一个以番剧浏览为主的动漫站点首页：按季度查看新番连载，按类型和关键词在番剧索引中检索，找到想看的动画后再进入对应作品页。这里把「找番」和「看更新」两件事放在最前面。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#catalog">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+            进入番剧索引
+          </a>
+          <a class="btn btn-ghost" href="#season">查看本季新番</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 320 300" role="presentation">
+          <defs>
+            <linearGradient id="pole" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#e9f2fb"/><stop offset="1" stop-color="#9fc0e0"/>
+            </linearGradient>
+          </defs>
+          <circle cx="160" cy="120" r="96" fill="rgba(255,255,255,.06)"/>
+          <circle cx="160" cy="120" r="96" fill="none" stroke="rgba(255,255,255,.16)" stroke-dasharray="4 8"/>
+          <g transform="translate(160,120)">
+            <path d="M0 0 L0 -78 L34 -62 L0 0 Z" fill="#ffd166"/>
+            <path d="M0 0 L68 40 L48 74 L0 0 Z" fill="#ef476f"/>
+            <path d="M0 0 L-68 40 L-48 74 L0 0 Z" fill="#06d6a0"/>
+            <path d="M0 0 L0 78 L-34 62 L0 0 Z" fill="#4cc9f0"/>
+            <circle r="9" fill="#fff"/>
+          </g>
+          <rect x="154" y="196" width="12" height="70" rx="6" fill="url(#pole)"/>
+          <ellipse cx="160" cy="272" rx="46" ry="8" fill="rgba(0,0,0,.28)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="wrap">
+      <ul>
+        <li><strong>按季</strong><span>新番连载</span></li>
+        <li><strong>按类</strong><span>番剧索引</span></li>
+        <li><strong>按词</strong><span>站内检索</span></li>
+        <li><strong>按需</strong><span>观看路径</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="bar"></span>风车动漫首页能做什么</h2>
+        <p>打开风车动漫，最先要用到的是三个动作：看这一季有什么、按类型翻想看的、直接搜索作品名。下面三块分别对应这三件事。</p>
+      </div>
+      <div class="cols">
+        <article class="card">
+          <div class="ico" style="background:#fff4d6;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b8860b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5v14M16 5v14"/></svg>
+          </div>
+          <h3>新番连载一览</h3>
+          <p>按季度汇总当季开播的动画作品，每部标注类型与更新状态，方便判断哪些是正在更新的连载、哪些已经完结可一次看完。</p>
+        </article>
+        <article class="card">
+          <div class="ico" style="background:#e6f9f3;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0a9d78" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>
+          </div>
+          <h3>番剧索引与筛选</h3>
+          <p>用类型标签和关键词缩小范围。索引中的每一项都直接写明作品名与题材，点开即可到对应作品浏览页。</p>
+        </article>
+        <article class="card">
+          <div class="ico" style="background:#e8f4fd;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2a7fc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          </div>
+          <h3>作品名直达检索</h3>
+          <p>记得名字就直接搜。搜索框对作品名做即时匹配，输入片段即可在索引中过滤出候选结果，减少逐页翻找的时间。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEASON -->
+  <section id="season" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="bar"></span>新番连载 · 本季看点</h2>
+        <p>以下为当季连载中的代表性题材分区，按题材归类便于快速定位。具体作品的更新时间与集数请以作品页标注为准。</p>
+      </div>
+      <div class="season-grid">
+        <article class="season-item">
+          <div class="thumb" style="background:linear-gradient(150deg,#4cc9f0,#2a7fc4);">热血</div>
+          <div>
+            <h3>热血与冒险</h3>
+            <p>以成长、战斗与远行为主线的作品，适合追更节奏偏快的观众。多数作品为周更连载，关键篇章常集中在季中。</p>
+            <span class="tag">周更</span><span class="tag">长篇向</span>
+          </div>
+        </article>
+        <article class="season-item">
+          <div class="thumb" style="background:linear-gradient(150deg,#ef476f,#b32b4d);">日常</div>
+          <div>
+            <h3>日常与治愈</h3>
+            <p>篇幅轻、单集独立性强，适合零散时间观看。这类作品对连续追更要求低，可随时从任意一集切入。</p>
+            <span class="tag">单集独立</span><span class="tag">轻松向</span>
+          </div>
+        </article>
+        <article class="season-item">
+          <div class="thumb" style="background:linear-gradient(150deg,#06d6a0,#0a9d78);">奇幻</div>
+          <div>
+            <h3>奇幻与设定系</h3>
+            <p>世界观设定较重，前几集信息密度高，建议按顺序观看。索引中会单独标注此类作品，避免误跳集数。</p>
+            <span class="tag">按序观看</span><span class="tag">设定系</span>
+          </div>
+        </article>
+        <article class="season-item">
+          <div class="thumb" style="background:linear-gradient(150deg,#ffd166,#d99a13);">剧场</div>
+          <div>
+            <h3>剧场版与特辑</h3>
+            <p>单部完结的剧场动画与系列特辑，不依赖连载进度，适合想一次看完一部完整故事的观众。</p>
+            <span class="tag">单片完结</span><span class="tag">独立观看</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOG -->
+  <section id="catalog">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="bar"></span>番剧索引 · 按类型与关键词找番</h2>
+        <p>输入作品名片段，或点击类型标签筛选。结果为静态示例条目，用于说明风车动漫索引的检索方式与信息呈现。</p>
+      </div>
+
+      <div class="filter">
+        <input id="q" type="search" placeholder="搜索作品名，例如：星、剑、旅" aria-label="搜索番剧作品名">
+        <div class="chips" role="group" aria-label="按类型筛选">
+          <button class="chip active" data-cat="all" type="button">全部</button>
+          <button class="chip" data-cat="热血" type="button">热血</button>
+          <button class="chip" data-cat="日常" type="button">日常</button>
+          <button class="chip" data-cat="奇幻" type="button">奇幻</button>
+          <button class="chip" data-cat="剧场" type="button">剧场</button>
+        </div>
+      </div>
+
+      <div class="catalog" id="list">
+        <article class="show" data-cat="热血" data-name="星海远征">
+          <div class="cover" style="background:linear-gradient(140deg,#4cc9f0,#2a7fc4);">热血</div>
+          <h4>星海远征</h4>
+          <p>热血 · 周更连载</p>
+        </article>
+        <article class="show" data-cat="奇幻" data-name="剑与雾之书">
+          <div class="cover" style="background:linear-gradient(140deg,#06d6a0,#0a9d78);">奇幻</div>
+          <h4>剑与雾之书</h4>
+          <p>奇幻 · 设定系</p>
+        </article>
+        <article class="show" data-cat="日常" data-name="午后点心铺">
+          <div class="cover" style="background:linear-gradient(140deg,#ef476f,#b32b4d);">日常</div>
+          <h4>午后点心铺</h4>
+          <p>日常 · 单集独立</p>
+        </article>
+        <article class="show" data-cat="剧场" data-name="风起时的旅程">
+          <div class="cover" style="background:linear-gradient(140deg,#ffd166,#d99a13);">剧场</div>
+          <h4>风起时的旅程</h4>
+          <p>剧场 · 单片完结</p>
+        </article>
+        <article class="show" data-cat="热血" data-name="铁轨尽头">
+          <div class="cover" style="background:linear-gradient(140deg,#4cc9f0,#1d4a7c);">热血</div>
+          <h4>铁轨尽头</h4>
+          <p>热血 · 季中篇章</p>
+        </article>
+        <article class="show" data-cat="奇幻" data-name="灯影异闻">
+          <div class="cover" style="background:linear-gradient(140deg,#06d6a0,#2a7fc4);">奇幻</div>
+          <h4>灯影异闻</h4>
+          <p>奇幻 · 按序观看</p>
+        </article>
+        <article class="show" data-cat="日常" data-name="慢生活手记">
+          <div class="cover" style="background:linear-gradient(140deg,#ef476f,#8e2f5f);">日常</div>
+          <h4>慢生活手记</h4>
+          <p>日常 · 轻松向</p>
+        </article>
+        <article class="show" data-cat="剧场" data-name="旅人的星图">
+          <div class="cover" style="background:linear-gradient(140deg,#ffd166,#b8860b);">剧场</div>
+          <h4>旅人的星图</h4>
+          <p>剧场 · 独立观看</p>
+        </article>
+        <p class="empty" id="empty">没有匹配的作品，换个关键词或切回「全部」试试。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATH -->
+  <section id="path" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="bar"></span>在风车动漫看番的三步路径</h2>
+        <p>从进入首页到开始观看，通常只需三步。把顺序固定下来，可以避免在大量条目中反复跳转。</p>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <h3>先定范围</h3>
+          <p>如果只是随便看看，从本季看点入手；如果已有目标，直接在索引搜索框输入作品名片段，一步到位。</p>
+        </article>
+        <article class="step">
+          <h3>再看信息</h3>
+          <p>在索引条目上确认题材与连载状态，区分周更连载与单片完结，避免把剧场版当成连续剧去找下一集。</p>
+        </article>
+        <article class="step">
+          <h3>最后进入作品页</h3>
+          <p>确认无误后进入对应作品浏览页，按标注的集数顺序观看。设定较重的作品建议从第一集开始。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANEL -->
+  <section>
+    <div class="wrap">
+      <div class="panel">
+        <div>
+          <h2>把风车动漫加入你的找番习惯</h2>
+          <p>风车动漫的首页只做一件事：把当季新番与番剧索引放在最容易点到的位置。收藏本页后，下次打开即可直接从索引搜索，或先看本季看点再决定追哪一部。</p>
+        </div>
+        <div class="side">
+          <a class="btn btn-primary" href="#catalog">打开番剧索引</a>
+          <a class="btn btn-ghost" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1" style="pointer-events:none;">下载</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#173a63"/>
+            <path d="M32 32 L32 10 L44 16 L32 32 Z" fill="#ffd166"/>
+            <path d="M32 32 L52 40 L46 52 L32 32 Z" fill="#ef476f"/>
+            <path d="M32 32 L12 40 L18 52 L32 32 Z" fill="#06d6a0"/>
+            <path d="M32 32 L32 54 L20 48 L32 32 Z" fill="#4cc9f0"/>
+            <circle cx="32" cy="32" r="4" fill="#fff"/>
+          </svg>
+          风车动漫
+        </div>
+      </div>
+      <nav class="foot-links" aria-label="页尾导航">
+        <a href="#season">新番连载</a>
+        <a href="#catalog">番剧索引</a>
+        <a href="#path">观看路径</a>
+        <a href="#about">站点说明</a>
+      </nav>
+    </div>
+    <div class="foot-note">
+      风车动漫 · 动漫作品浏览与检索入口。页面中的作品条目为索引示例，用于说明分类与检索方式；作品更新进度、集数与可观看范围以对应作品页的实际标注为准。
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var list = document.getElementById('list');
+  var items = Array.prototype.slice.call(list.querySelectorAll('.show'));
+  var empty = document.getElementById('empty');
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var cat = 'all';
+
+  function apply(){
+    var kw = (q.value || '').trim().toLowerCase();
+    var shown = 0;
+    items.forEach(function(el){
+      var okCat = (cat === 'all' || el.getAttribute('data-cat') === cat);
+      var okKw = !kw || el.getAttribute('data-name').toLowerCase().indexOf(kw) > -1;
+      var ok = okCat && okKw;
+      el.style.display = ok ? '' : 'none';
+      if(ok) shown++;
+    });
+    empty.style.display = shown ? 'none' : 'block';
+  }
+
+  q.addEventListener('input', apply);
+  chips.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      chips.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      cat = btn.getAttribute('data-cat');
+      apply();
+    });
+  });
+})();
+</script>
+</body>
+</html>
